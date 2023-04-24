@@ -1,7 +1,5 @@
 package org.example;
 
-public class Tipo {
-  public Tipo(){
-
-  }
+public enum Tipo {
+  ZAPATOS, CAMISA_MANGA_CORTAS, PANTALON;
 }

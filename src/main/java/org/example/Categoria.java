@@ -1,13 +1,34 @@
 package org.example;
-
+import org.example.Tipo;
 import java.util.List;
+public enum Categoria implements Admite{
 
-public class Categoria {
-  List<Tipo> tipos;
-  public Categoria(Tipo... tipos){
-    this.tipos = List.of(tipos);
+    CALZADO {
+      private List<Tipo> accepta = List.of(Tipo.ZAPATOS);
+      @Override
+      public boolean admiteTipo(Tipo tipo) {
+        return accepta.contains(tipo);
+      }
+    },
+    PARTE_SUPERIOR {
+      private List<Tipo> accepta = List.of(Tipo.ZAPATOS);
+      @Override
+      public boolean admiteTipo(Tipo tipo) {
+        return accepta.contains(tipo);
+      }
+    },
+    PARTE_INFERIOR {
+      private List<Tipo> accepta = List.of(Tipo.ZAPATOS);
+      @Override
+      public boolean admiteTipo(Tipo tipo) {
+        return accepta.contains(tipo);
+      }
+    },
+    ACCESORIOS {
+      private List<Tipo> accepta = List.of(Tipo.ZAPATOS);
+      @Override
+      public boolean admiteTipo(Tipo tipo) {
+        return accepta.contains(tipo);
+      }
+    };
   }
-  public Boolean perteneceCategoria(Tipo tipo) {
-      return this.tipos.contains(tipo);
-  }
-}
