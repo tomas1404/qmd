@@ -12,11 +12,42 @@ public class Prenda {
     private Tipo tipo;
     private Categoria categoria;
     private Material material;
+    private Trama trama = Trama.LISA;
     private Color color_primario; //RGB
     private Color color_secundario; //RGB
 
+    public Prenda PrendaTipo(Tipo tipo) {
+        this.tipo = tipo;
+        return this;
+    }
+
+    public Prenda Aspectos_Materiales(Material material,Trama trama, Color primario, Color secundario) throws Prenda_Excepcion{
+        if (this.tipo != null) {
+            throw new Prenda_Excepcion("Primero va el tipo");
+        }
+        this.color_secundario = secundario;
+        this.material = material;
+        this.trama = trama;
+        this.color_primario = primario;
+        return this;
+    }
+
+    public Prenda PrendaCategoria(Categoria categoria){
+        this.categoria = categoria;
+        return this;
+    }
+    public Prenda Aspectos_Materiales(Material material,Trama trama, Color primario) throws Prenda_Excepcion{
+        if (this.tipo != null) {
+            throw new Prenda_Excepcion("Primero va el tipo");
+        }
+        this.material = material;
+        this.trama = trama;
+        this.color_primario = primario;
+        return this;
+    }
+
     public Prenda (Tipo tipo,Categoria categoria,Material material,
-                   Color color_primario)  throws Prenda_Excepcion {
+                   Color color_primario, Trama trama)  throws Prenda_Excepcion {
         if ((tipo == null)){
             throw new Prenda_Excepcion("tipo es obligatorio");
         }
@@ -36,10 +67,12 @@ public class Prenda {
         this.categoria = categoria;
         this.material = material;
         this.color_primario = color_primario;
+        if (trama != null)
+            this.trama = trama;
     }
 
     public Prenda (Tipo tipo,Categoria categoria,Material material,
-                   Color color_primario,Color color_secundario)  throws Prenda_Excepcion {
+                   Color color_primario,Color color_secundario,Trama trama)  throws Prenda_Excepcion {
         if ((tipo == null)){
             throw new Prenda_Excepcion("tipo es obligatorio");
         }
@@ -60,5 +93,13 @@ public class Prenda {
             this.material = material;
             this.color_primario = color_primario;
             this.color_secundario = color_secundario;
+            if (trama != Trama.LISA)
+                this.trama = trama;
+        }
+
+        public Prenda Crear_Prenda() throws Prenda_Excepcion {
+            return new Prenda(this.tipo,this.categoria,
+                this.material,this.color_primario,
+                this.color_secundario,this.trama);
         }
     }
